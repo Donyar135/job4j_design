@@ -10,9 +10,9 @@ public class Generics {
         List<Animal> first = new ArrayList<>();
         List<Predator> second = new ArrayList<>();
         List<Tiger> third = new ArrayList<>();
-        first.add(new Animal("Daniyar", 12));
-        second.add(new Predator("Bibarys", 15));
-        third.add(new Tiger("Арман", 21));
+        first.add(new Animal("Predator", 12));
+        second.add(new Predator("Tiger", 12));
+        third.add(new Tiger("Арман", 12));
 
         generics.printObject(first);
         generics.printObject(second);
@@ -30,6 +30,7 @@ public class Generics {
     }
 
     public void printObject(List<?> list) {
+
         for (Iterator<?> iterator = list.iterator(); iterator.hasNext();) {
             Object next = iterator.next();
             System.out.println("Текущий элемент: " + next);

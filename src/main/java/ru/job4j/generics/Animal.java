@@ -1,9 +1,6 @@
 package ru.job4j.generics;
 
-import java.util.List;
-import java.util.Objects;
-
-public class Animal extends Generics {
+public class Animal {
     private String name;
     private int age;
 
@@ -12,34 +9,8 @@ public class Animal extends Generics {
         this.age = age;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        Animal animal = (Animal) o;
-        return age == animal.age && Objects.equals(name, animal.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, age);
-    }
-
     @Override
     public String toString() {
+        return "Animal{" + "name='" + name + '\'' + ", age=" + age + '}';
     }
 }
