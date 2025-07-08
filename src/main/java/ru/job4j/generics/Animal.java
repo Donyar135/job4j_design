@@ -30,9 +30,6 @@ public class Animal extends Generics {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
         Animal animal = (Animal) o;
         return age == animal.age && Objects.equals(name, animal.name);
     }
@@ -44,9 +41,5 @@ public class Animal extends Generics {
 
     @Override
     public String toString() {
-        return "Animal{"
-                + "name='" + name + '\''
-                + ", age=" + age
-                + '}';
     }
 }
