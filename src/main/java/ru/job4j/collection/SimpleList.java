@@ -1,7 +1,8 @@
 package ru.job4j.collection;
 
 public interface SimpleList<T> extends Iterable<T> {
-    void add(T value);
+    default void add(T value) {
+    }
 
     default T set(int index, T newValue) {
         return null;
