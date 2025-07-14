@@ -57,7 +57,6 @@ public class SimpleArrayList<T> implements SimpleList<T> {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private void grow() {
         int newCapacity = container.length == 0 ? 1 : container.length * 2;
         container = Arrays.copyOf(container, newCapacity);
@@ -77,7 +76,6 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
             @Override
             public T next() {
-                checkForModification();
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
@@ -87,7 +85,6 @@ public class SimpleArrayList<T> implements SimpleList<T> {
             private void checkForModification() {
                 if (modCount != expectedModCount) {
                     throw new ConcurrentModificationException();
-
                 }
             }
         };
