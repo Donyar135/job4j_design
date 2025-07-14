@@ -87,6 +87,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
             private void checkForModification() {
                 if (modCount != expectedModCount) {
                     throw new ConcurrentModificationException();
+
                 }
             }
         };
