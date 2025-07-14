@@ -2,8 +2,18 @@ package ru.job4j.collection;
 
 public interface SimpleList<T> extends Iterable<T> {
     void add(T value);
-    T set(int index, T newValue);
+
+    default T set(int index, T newValue) {
+        return null;
+    }
+
     T remove(int index);
-    T get(int index);
-    int size();
+
+    default T get(int index) {
+        return null;
+    }
+
+    default int size() {
+        return 0;
+    }
 }
