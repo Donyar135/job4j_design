@@ -24,8 +24,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public T set(int index, T newValue) {
-        checkIndex(index);
-        T old = container[index];
+        T old = get(index);
         container[index] = newValue;
         return old;
     }
@@ -52,9 +51,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     }
 
     private void checkIndex(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Invalid index: " + index);
-        }
+        Objects.checkIndex(index, size);
     }
 
     private void grow() {
@@ -70,7 +67,9 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
             @Override
             public boolean hasNext() {
-                checkForModification();
+                if (modCount != expectedModCount) {
+                    throw new ConcurrentModificationException();
+                }
                 return cursor < size;
             }
 
@@ -80,12 +79,6 @@ public class SimpleArrayList<T> implements SimpleList<T> {
                     throw new NoSuchElementException();
                 }
                 return container[cursor++];
-            }
-
-            private void checkForModification() {
-                if (modCount != expectedModCount) {
-                    throw new ConcurrentModificationException();
-                }
             }
         };
     }
