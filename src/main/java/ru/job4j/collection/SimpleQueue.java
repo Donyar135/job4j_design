@@ -6,42 +6,28 @@ public class SimpleQueue<T> {
     private final SimpleStack<T> input = new SimpleStack<>();
     private final SimpleStack<T> output = new SimpleStack<>();
 
+    private int inputSize = 0;
+    private int outputSize = 0;
+
     public void push(T value) {
         input.push(value);
+        inputSize++;
     }
 
     public T poll() {
-        if (output.isEmpty()) {
-            while (!input.isEmpty()) {
+        if (outputSize == 0) {
+            while (inputSize > 0) {
                 output.push(input.pop());
+                inputSize--;
+                outputSize++;
             }
         }
-        if (output.isEmpty()) {
+
+        if (outputSize == 0) {
             throw new NoSuchElementException("Queue is empty");
         }
+
+        outputSize--;
         return output.pop();
-    }
-
-
-    private boolean outputIsEmpty() {
-        try {
-            output.pop();
-            throw new IllegalStateException("pop should not change state during empty check");
-        } catch (NoSuchElementException e) {
-            return true;
-        } catch (IllegalStateException e) {
-            return false;
-        }
-    }
-
-    private void transferInputToOutput() {
-        while (true) {
-            try {
-                T value = input.pop();
-                output.push(value);
-            } catch (NoSuchElementException e) {
-                break;
-            }
-        }
     }
 }
