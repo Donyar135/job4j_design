@@ -44,25 +44,20 @@ public class SimpleLinkedList<E> implements SimpleLinked<E> {
 
             @Override
             public boolean hasNext() {
-                checkForModification();
+                if (expectedModCount != modCount) {
+                    throw new java.util.ConcurrentModificationException();
+                }
                 return current != null;
             }
 
             @Override
             public E next() {
-                checkForModification();
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
                 E value = current.item;
                 current = current.next;
                 return value;
-            }
-
-            private void checkForModification() {
-                if (expectedModCount != modCount) {
-                    throw new java.util.ConcurrentModificationException();
-                }
             }
         };
     }
