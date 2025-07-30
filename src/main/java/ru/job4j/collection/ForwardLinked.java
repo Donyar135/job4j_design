@@ -24,6 +24,13 @@ public class ForwardLinked<T> implements Iterable<T> {
         modCount++;
     }
 
+    public void addFirst(T value) {
+        Node<T> newNode = new Node<>(value, head);
+        head = newNode;
+        size++;
+        modCount++;
+    }
+
     public T get(int index) {
         Objects.checkIndex(index, size);
         Node<T> current = head;
@@ -75,6 +82,10 @@ public class ForwardLinked<T> implements Iterable<T> {
                 return value;
             }
         };
+    }
+
+    public boolean isEmpty() {
+        return head == null;
     }
 
     private static class Node<T> {
