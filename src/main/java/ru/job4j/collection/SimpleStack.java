@@ -16,4 +16,8 @@ public class SimpleStack<T> {
         }
         return linked.deleteFirst();
     }
+
+    public boolean isEmpty() {
+        return linked.isEmpty();
+    }
 }
