@@ -19,10 +19,7 @@ public class SimpleArraySet<T> implements SimpleSet<T> {
     @Override
     public boolean contains(T value) {
         for (T el : set) {
-            if (el == null && value == null) {
-                return true;
-            }
-            if (value.equals(el)) {
+            if (el == null && value == null || value.equals(el)) {
                 return true;
             }
         }
