@@ -24,10 +24,20 @@ public class LogFilter {
         }
     }
 
+    public void saveTo(String out) {
+        var data = filter();
+        try (var writer = new java.io.FileWriter(out)) {
+            for (String line : data) {
+                System.out.println(line);
+                writer.write(line + System.lineSeparator());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
-        LogFilter logFilter = new LogFilter("data/log.txt");
-        List<String> filtered = logFilter.filter();
-        filtered.forEach(System.out::println);
+        new LogFilter("data/log.txt").saveTo("data/404.txt");
     }
 }
 
