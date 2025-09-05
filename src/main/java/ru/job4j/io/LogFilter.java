@@ -32,10 +32,20 @@ public class LogFilter {
         return "404".equals(parts[parts.length - 2]);
     }
 
+    public void saveTo(String out) {
+        var data = filter();
+        try (var writer = new java.io.PrintWriter(out)) {
+            for (String line : data) {
+                System.out.println(line);
+                writer.println(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
-        LogFilter logFilter = new LogFilter("data/log.txt");
-        List<String> filtered = logFilter.filter();
-        filtered.forEach(System.out::println);
+        new LogFilter("data/log.txt").saveTo("data/404.txt");
     }
 }
 
