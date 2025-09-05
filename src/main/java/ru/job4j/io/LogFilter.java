@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.io.PrintWriter;
 
 public class LogFilter {
     private final String file;
@@ -34,7 +35,7 @@ public class LogFilter {
 
     public void saveTo(String out) {
         var data = filter();
-        try (var writer = new java.io.PrintWriter(out)) {
+        try (var writer = new PrintWriter(out)) {
             for (String line : data) {
                 System.out.println(line);
                 writer.println(line);
