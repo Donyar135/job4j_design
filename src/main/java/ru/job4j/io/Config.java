@@ -14,6 +14,7 @@ public class Config {
 
     public Config(final String path) {
         this.path = path;
+
     }
 
     public void load() {
