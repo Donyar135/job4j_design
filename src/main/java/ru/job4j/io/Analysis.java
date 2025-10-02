@@ -16,10 +16,10 @@ public class Analysis {
                 String status = parts[0];
                 String time = parts[1];
 
-                if ((status.equals("400") || status.equals("500")) && !serverDown) {
+                if (("400".equals(status) || "500".equals(status)) && !serverDown) {
                     serverDown = true;
                     start = time;
-                } else if (!(status.equals("400") || status.equals("500")) && serverDown) {
+                } else if (!("400".equals(status) || "500".equals(status)) && serverDown) {
                     serverDown = false;
                     out.println(start + ";" + time);
                 }
