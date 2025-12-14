@@ -42,7 +42,9 @@ public class Config {
                 if (key.isEmpty()) {
                     throw new IllegalArgumentException("Line " + lineNumber + ": Key is missing");
                 }
-
+                if (value.isBlank()) {
+                    throw new IllegalArgumentException("Line " + lineNumber + ": Value is missing");
+                }
                 // Значение может быть пустым (это допустимо)
                 values.put(key, value);
             }

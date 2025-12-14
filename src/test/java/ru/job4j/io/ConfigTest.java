@@ -24,15 +24,6 @@ class ConfigTest {
     }
 
     @Test
-    void whenLineHasExtraEqualSign() {
-        String path = "./data/extra_equal.properties";
-        Config config = new Config(path);
-        config.load();
-        assertThat(config.value("url")).isEqualTo("jdbc=postgresql");
-        assertThat(config.value("token")).isEqualTo("");
-    }
-
-    @Test
     void whenInvalidLineNoEquals() {
         String path = "./data/invalid_no_equals.properties";
         Config config = new Config(path);
@@ -48,5 +39,14 @@ class ConfigTest {
         assertThatThrownBy(config::load)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("Key is missing");
+    }
+
+    @Test
+    void whenInvalidLineEmptyValue() {
+        String path = "./data/invalid_empty_value.properties";
+        Config config = new Config(path);
+        assertThatThrownBy(config::load)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Value is missing");
     }
 }
