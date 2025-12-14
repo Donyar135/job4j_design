@@ -25,9 +25,6 @@ public class Analysis {
                     out.println(start + ";" + time);
                 }
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
